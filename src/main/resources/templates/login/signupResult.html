@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  #loginTitle{
+    text-align: center;
+    position: relative;
+    margin: 40%;
+  }
+  .login{
+    height: 50px;
+    width: 250px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+
+    transform: translate(-50%, -50%);
+  }
+  .loginBtn{
+    height: 50px;
+  }
+</style>
+<body>
+  <h1 id="loginTitle">login</h1>
+  <form action="/board/login/post" method="post">
+    <div class="login">
+      <div>
+        <input type="text" name="id" placeholder="아이디" required>
+        <input type="password" name="password" placeholder="비밀번호" required>
+      </div>
+      <input type="submit" class="loginBtn" value="로그인">
+      <input type="button" class="signUpBtn" value="회원가입" onclick="location.href='/board/signup'">
+    </div>
+  </form>
+  <script>
+  window.onload = () => {
+    alert("회원가입을 환영합니다!")
+  }
+</script>
+</body>
+</html>

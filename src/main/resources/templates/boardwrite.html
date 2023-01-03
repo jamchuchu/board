@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    h1{
+    text-align: center
+    }
+    .layout
+   {
+    width: 500px;
+    margin: 0 auto;
+    }
+
+    .layout>input, textarea{
+    width: 100%;
+    box-sizing: border-box;
+    }
+
+    .layout> textarea{
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
+    }
+
+</style>
+<body>
+    <h1>글쓰기</h1>
+    <form action="/board/save" method="post">
+        <div class="layout">
+            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+            <textarea name="content" placeholder="내용을 입력하세요" required ></textarea>
+            <input type="submit" name="submitBtn" value="작성">
+        </div>
+    </form>
+
+</body>
+</html>

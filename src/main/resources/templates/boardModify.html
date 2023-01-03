@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    h1{
+    text-align: center
+    }
+    .layout
+   {
+    width: 500px;
+    margin: 0 auto;
+    }
+
+    .layout>input, textarea{
+    width: 100%;
+    box-sizing: border-box;
+    }
+
+    .layout> textarea{
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
+    }
+
+</style>
+<body>
+<h1>글쓰기</h1>
+    <form th:action="@{/board/modify/post/{boardNum}(boardNum = ${article.boardNum})}" method="post">
+        <div class="layout">
+            <input type="text" name="title" th:value = ${article.title}>
+            <textarea name="content"  th:text = ${article.content}></textarea>
+            <button type="submit" name="submitBtn">작성</button>
+        </div>
+    </form>
+</body>
+
+</script>
+</html>

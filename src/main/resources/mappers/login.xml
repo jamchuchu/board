@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyemin_board.demo.repository.LoginRepository">
+    <insert id="addInfo" parameterType="com.hyemin_board.demo.DTO.LoginDto">
+        insert into login
+        values(0 , #{id}, #{password})
+    </insert>
+    <select id="getLoginInfoById" resultType="com.hyemin_board.demo.DTO.LoginDto">
+        select
+            number as loginNum,
+            id,
+            password
+        from
+            login
+        where
+            id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyemin_board.demo.repository.CommentRepository">
+    <insert id="saveComment" parameterType="com.hyemin_board.demo.DTO.CommentDto"
+            useGeneratedKeys="true" keyProperty="number">
+        insert into comment
+        values(0 ,#{articleNum}, #{author}, #{content}, #{date}, #{good}, #{bad})
+    </insert>
+    <select id="getCommentsByBoardNum" resultType="com.hyemin_board.demo.DTO.CommentDto">
+        select
+            number,
+            comment_author as author,
+            comment_content as content,
+            comment_date as date,
+            good,
+            bad
+        from
+            comment
+        where
+            article_number = #{articleNum}
+    </select>
+    <select id="getCommentByNumber" resultType="com.hyemin_board.demo.DTO.CommentDto">
+        select
+            number,
+            comment_author as author,
+            comment_content as content,
+            comment_date as date,
+            good,
+            bad
+        from
+            comment
+        where
+            number = #{number}
+    </select>
+    <update id="goodUpByNumber">
+        update
+            comment
+        set
+            good =  good + 1
+        where
+            number = #{number}
+    </update>
+    <update id="badUpByNumber">
+        update
+            comment
+        set
+            bad =  bad + 1
+        where
+            number = #{number}
+    </update>
+    <update id="modifyCommentbyNumber">
+        update
+            comment
+        set
+            comment_content = #{content}
+        where
+            number = #{number}
+    </update>
+
+</mapper>

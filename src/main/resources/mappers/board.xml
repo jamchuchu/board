@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyemin_board.demo.repository.BoardRepository">
+    <insert id="saveBoard" parameterType="com.hyemin_board.demo.DTO.BoardDto"
+        useGeneratedKeys="true" keyProperty="boardNum">
+        insert into boarddata
+            values(0 , #{title}, #{content}, #{author}, #{date}, #{viewNum})
+    </insert>
+    <select id="getBoards" resultType="com.hyemin_board.demo.DTO.BoardDto">
+        select
+            board_num as boardNum,
+            title,
+            content,
+            author,
+            date,
+            view_num as viewNum
+        from
+            boarddata
+    </select>
+    <select id="getBoardByBoardNum" parameterType="integer" resultType="com.hyemin_board.demo.DTO.BoardDto">
+        select
+            board_num as boardNum,
+            title,
+            content,
+            author,
+            date,
+            view_num as viewNum
+        from
+            boarddata
+        where
+            board_num = #{boardNum}
+    </select>
+
+    <update id="addViewNum">
+        update
+            boarddata
+        set
+            view_num= view_num + 1
+        where
+            board_num = #{boardNum}
+    </update>
+    <delete id="deleteBoard">
+        delete from
+            boarddata
+        where
+            board_num = #{boardNum}
+    </delete>
+
+    <update id="modifyTitle" parameterType="com.hyemin_board.demo.DTO.BoardDto">
+        update
+            boarddata
+        set
+            title = #{title}
+        where
+            board_num = #{boardNum}
+    </update>
+
+    <update id="modifyContent" parameterType="com.hyemin_board.demo.DTO.BoardDto">
+        update
+            boarddata
+        set
+            content =#{content}
+        where
+            board_num = #{boardNum}
+    </update>
+
+    <select id="searchByTitle" resultType="com.hyemin_board.demo.DTO.BoardDto">
+        select
+            board_num as boardNum,
+            title,
+            content,
+            author,
+            date,
+            view_num as viewNum
+        from
+            boarddata
+        where
+            title like CONCAT('%',#{searchText},'%') or title like CONCAT('%',#{searchText}) or
+            title like CONCAT(#{searchText},'%')
+    </select>
+</mapper>
